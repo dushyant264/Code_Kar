@@ -8,7 +8,7 @@ const LoginController = async(req,res)=>{
     try {
         const user= await User.findOne({email})
         if(!user){
-            return res.status(404).json({message:'User does not exist',id:user._id,name:user.name})
+            return res.status(404).json({message:'User does not exist'})
         }
         // compare password
         const isMatch= await bcrypt.compare(password,user.password)
@@ -17,7 +17,7 @@ const LoginController = async(req,res)=>{
         }
         // 30d expiry token
         const token= jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'30d'})
-        res.status(200).json({token})
+        res.status(200).json({token, user: {id:user._id, name:user.name, email:user.email}})
     } catch (error) {
         res.status(500).json({message:'Internal Server Error'})
     }
