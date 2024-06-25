@@ -8,6 +8,8 @@ const { connectDB } = require('./config/db');
 
 // import  routes
   const UserRoutes = require('./Routes/UserRoutes')
+  const AdminRoutes = require('./Routes/AdminRoutes')
+  
 // server basics
 dotenv.config();
 const app = express();
@@ -18,8 +20,11 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-// api endpoint routes
+// api endpoint User routes
 app.use('/api/',UserRoutes)
+
+// admin endpoints
+ app.use('/admin/',AdminRoutes)
 
 app.listen(port,
     console.log('Server is running on port 5000'.magenta.blue.italic)
