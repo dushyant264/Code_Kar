@@ -10,7 +10,10 @@ const SignUpController = require('../Controllers/UserController/SignUpController
 const LoginController = require('../Controllers/UserController/LoginController')
 const GetUserController = require('../Controllers/UserController/GetUserController')
 const LeaderboardController = require('../Controllers/UserController/LeaderboardController')
-const GetProblemController = require('../Controllers/UserController/GetProblemController')
+const GetProblemController = require('../Controllers/UserController/GetProblemController');
+const getAllProbController = require('../Controllers/UserController/getAllProbController');
+const checkProblemController = require('../Controllers/UserController/checkProblem');
+const RunCodeController = require('../Controllers/UserController/runCode');
 
 // SignUp
 
@@ -33,5 +36,15 @@ router.route('/leaderboard').get(auth,LeaderboardController)
 router.route('/problem/:slug').get(auth,GetProblemController)
 
 // Get All Problems
+
+router.route('/problem').get(auth,getAllProbController)
+
+// run code
+
+router.route('/run').post(auth,RunCodeController)
+
+// check problem
+
+router.route('/check/:slug').post(auth,checkProblemController)
 
 module.exports = router;

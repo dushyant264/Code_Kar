@@ -8,7 +8,7 @@ if(!fs.existsSync(playGroundPath)){
     fs.mkdirSync(playGroundPath,{recursive:true})
 }
 
-const exec_Judge_CPP= async (filePath,inputData)=>{
+const exec_Judge_CPP= async (filePath,inputPath)=>{
     const JobId = path.basename(filePath).split('.')[0]
     const outPath = path.join(playGroundPath,`${JobId}.out`)
 

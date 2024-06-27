@@ -8,6 +8,7 @@ const GetProblemController= async(req,res)=>{
         const cachedProblem = await redisClient.get(`problem:${slug}`)
         let problem
         if(cachedProblem){
+            console.log('Problem found in cache')
             problem = JSON.parse(cachedProblem)
         }else{
             problem = await Problem.findOne({slug})
