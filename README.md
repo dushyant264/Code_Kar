@@ -4,8 +4,17 @@ Welcome to the CodeJudge API documentation. This API provides endpoints for user
 
 ## Usage
 
-1. Clone the repository:
-   - git clone 
+1 Clone the repository:
+  - git clone https://github.com/dushyant264/Code_Kar.git
+  - cd Backend
+
+2 Install dependencies:
+  - npm install
+
+3  Configure Env Variables
+
+4  Start the server
+  - npm run start
 
 ## Table of Contents
 
