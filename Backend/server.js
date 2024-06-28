@@ -16,6 +16,13 @@ const app = express();
 const port=process.env.PORT || 5000;
 connectDB()
 
+// cors allow headers n cookies
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}))
+
 // parse json and urlencoded data
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
