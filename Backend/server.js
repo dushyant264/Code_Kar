@@ -3,6 +3,7 @@ const dotenv = require('dotenv');  // environment variable
 // required modules
 
 const express = require('express');
+const cors = require('cors');
 const colors = require('colors');
 const { connectDB } = require('./config/db');
 
