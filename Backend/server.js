@@ -19,7 +19,6 @@ connectDB()
 
 // cors allow headers n cookies
 app.use(cors({
-    origin: 'http://localhost:3000',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
 }))
