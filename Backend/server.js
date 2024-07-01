@@ -23,6 +23,10 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }))
 
+app.get("/", (req, res) => {
+  res.send('API is running smoothly...');
+});
+
 // parse json and urlencoded data
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
