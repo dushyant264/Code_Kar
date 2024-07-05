@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState, createContext } from 'react'
 import Cookies from 'js-cookie'
+// import components
+import Navbar from './components/NavBar'
 
 const UserContext= createContext()
 
@@ -34,10 +36,11 @@ function App() {
   return (
    <UserContext.Provider value={{ user, token, setToken, isLoggedIn, setIsLoggedIn}}>
     <div className='App'>
-
+      <Navbar/>
     </div>
    </UserContext.Provider>
   );
 }
 
 export default App;
+export { UserContext }
