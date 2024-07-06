@@ -21,7 +21,7 @@ function App() {
   useEffect(()=>{
     (
       async()=>{
-        const USER_URL= 'https://code-kar.onrender.com/api/user'
+        const USER_URL= 'http://localhost:5000/api/user'
         const res= await axios.get(USER_URL,{Headers:{Authorization: token}}) // make api call
         if(res.status===200){
           setUser(res.data)

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import MenuIcon from '@mui/icons-material/Menu'
-import CustomButton from '/Controls/CustomButton'
+import CustomButton from './Controls/CustomButton'
 import { useState, useContext } from 'react'
 import Cookies from 'js-cookie'
 import { UserContext } from '../App'
@@ -54,7 +54,7 @@ const Navbar=()=>{
     // navig lnk
 
     const NavLink= styled(Typography)(({theme})=>({
-        fontSize:'14px',
+        fontSize:'16px',
         color:'#fff',
         textDecoration:'none',
         marginRight:'20px',
@@ -84,7 +84,7 @@ const Navbar=()=>{
 	}));
 
 
-    const NavbarContainer=styled(Box)(({theme})=({
+    const NavbarContainer=styled(Box)(({theme})=>({
         display:'flex',
         justifyContent:'space-between',
         alignItems:'center',
