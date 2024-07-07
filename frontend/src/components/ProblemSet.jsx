@@ -44,9 +44,11 @@ const ProblemSet=()=>{
     const [rpg, setrpg]= useState(10)
     const navigate= useNavigate()
 
-    if(!isLoggedIn){
-        navigate('/login')
+useEffect(() => {
+    if (!isLoggedIn) {
+        navigate('/login');
     }
+}, [isLoggedIn, navigate]);
 
     useEffect(()=>{
         (
