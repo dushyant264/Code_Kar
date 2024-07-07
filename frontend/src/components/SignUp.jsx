@@ -36,7 +36,7 @@ const  SignUp=()=>{
             if(successMsg.data==='success'){
                 navigate('/login')
             }else{
-                setSignupError(error.message)
+                setSignupError(successMsg.message)
             }
         setLoader(false)
         } catch (error) {
@@ -44,4 +44,47 @@ const  SignUp=()=>{
             console.log(error)
         }
     }
+
+    return (
+        <Grid>
+            <Paper elevation={5} sx={{m:'auto', mt:'50px', width:'400px', maxWidth:'90%',p:'30px 20px'}}>
+                <Grid align='center'>
+                    <Typography component='h2' fontSize='20px' fontWeight='bold' sx={{m:'10px 0'}}>Sign Up</Typography>
+                    <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
+                    <br/>
+                    <Typography sx={{color:'red',fontWeight:600,fontSize:'14px'}}>{signupError}</Typography>
+                </Grid>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <TextField type='text' name='name' fullWidth label='Name' placeholder='Name' sx={{mt:'20px'}} {...register('name')} />
+                    <Typography sx={{color:'red',fontWeight:600,fontSize:'11px',mt:'8px',mb:'12px',textAlign:'center'}}>{errors.name?.message}</Typography>
+
+                    <TextField type='email' name='email' fullWidth label='Email' placeholder='Email' {...register('email')} />
+                    <Typography sx={{color:'red',fontWeight:600,fontSize:'11px',mt:'8px',mb:'12px',textAlign:'center'}}>{errors.email?.message}</Typography>
+
+                    <TextField type='password' name='password' fullWidth label='Password' placeholder='Password'  {...register('password')} />
+                    <Typography sx={{color:'red',fontWeight:600,fontSize:'11px',mt:'8px',mb:'12px',textAlign:'center'}}>{errors.password?.message}</Typography>
+
+                    <TextField type='password' name='cpassword' fullWidth label='Confirm Password' placeholder='Confirm Password'  {...register('cpassword')} />
+                    <Typography sx={{color:'red',fontWeight:600,fontSize:'11px',mt:'8px',mb:'12px',textAlign:'center'}}>{errors.cpassword?.message}</Typography>
+
+                    <Button type='submit' variant='contained' color='primary' sx={{display:'block', m:'auto', mt:'10px'}}>Sign Up</Button>
+                </form>
+            </Paper>
+            {loader &&
+               <Box sx={{position:'fixed', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}>
+                   <ColorRing
+                      visible={true}
+                      height='80'
+                      width='80'
+                      ariaLabel='blocks-loading'
+                      wrapperStyle={{}}
+                      wrapperClass='blocks-wrapper'
+                      colors={['#55AAFF','#55AAFF','#55AAFF','#55AAFF','#55AAFF']}
+                   />
+               </Box>
+            }
+        </Grid>
+    )
 }
+
+export default SignUp

@@ -6,6 +6,9 @@ import { useEffect, useState, createContext } from 'react'
 import Cookies from 'js-cookie'
 // import components
 import Navbar from './components/NavBar'
+import SignUp from './components/SignUp'
+import Login from './components/Login'
+import ProblemSet from './components/ProblemSet'
 
 const UserContext= createContext()
 
@@ -37,6 +40,11 @@ function App() {
    <UserContext.Provider value={{ user, token, setToken, isLoggedIn, setIsLoggedIn}}>
     <div className='App'>
       <Navbar/>
+      <Routes>
+        <Route path='/' element={<ProblemSet/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<SignUp/>}/>
+      </Routes>
     </div>
    </UserContext.Provider>
   );
