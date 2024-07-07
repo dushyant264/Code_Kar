@@ -54,7 +54,7 @@ const ProblemSet=()=>{
                 try {
                     setLoader(true)
                     const ALL_PROBLEMS_URL=`http://localhost:5000/api/problem`
-                    const result= await axios.get(ALL_PROBLEMS_URL,{headers:{Authorization:token}})
+                    const result= await axios.get(ALL_PROBLEMS_URL,{headers:{Authorization: `Bearer ${token}`}})
                     if(result.status===200){
                         setRows(result.data)
                     }
@@ -65,7 +65,7 @@ const ProblemSet=()=>{
                 }
             }
         )()
-    },)
+    },[])
 
     // page change handler
     const handleChangePage=(event, newPage)=>{

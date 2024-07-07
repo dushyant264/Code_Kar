@@ -25,7 +25,7 @@ function App() {
     (
       async()=>{
         const USER_URL= 'http://localhost:5000/api/user'
-        const res= await axios.get(USER_URL,{Headers:{Authorization: token}}) // make api call
+        const res= await axios.get(USER_URL,{headers:{Authorization: `Bearer ${token}`}}) // make api call
         if(res.status===200){
           setUser(res.data)
           setIsLoggedIn(true)
