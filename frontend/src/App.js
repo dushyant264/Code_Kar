@@ -9,6 +9,7 @@ import Navbar from './components/NavBar'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import ProblemSet from './components/ProblemSet'
+import LeaderBoard from './components/LeaderBoard'
 
 const UserContext= createContext()
 
@@ -59,6 +60,7 @@ function App() {
         <Route path='/' element={<ProblemSet/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/leader-board' element={<LeaderBoard/>}/>
       </Routes>
     </div>
    </UserContext.Provider>
