@@ -38,7 +38,7 @@ const Login=()=>{
                 Cookies.set('token',token,{expires:30})
                 setToken(token)
                 setIsLoggedIn(true)
-                navigate('/')
+                window.location.href='/'
             }else{
                 console.log(result)
                 setLoginError(result.data?.message)
@@ -53,7 +53,7 @@ const Login=()=>{
     }
 
     return (
-        <Grid>
+        <Grid  mt='50px'>
             <Paper elevation={5} sx={{m:'auto', width:'400px', maxWidth:'90%', p:'30px 20px'}}>
                 <Grid align='center'>
                     <Typography component='h2' fontSize='20px' fontWeight='bold' sx={{m:'10px 0'}}>Login</Typography>
