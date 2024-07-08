@@ -10,6 +10,13 @@ const ProblemSchema=mongoose.Schema({
     difficulty: { type:String, required:true, enum:['easy', 'medium', 'hard']},
     input: { type:String, required:true},
     output: { type:String, required:true},
+    constraints: { type: String, required: true },
+    examples: [
+        {
+            input: { type: String, required: true },
+            output: { type: String, required: true }
+        }
+    ]
 })
 
 // before saving slugify the title
