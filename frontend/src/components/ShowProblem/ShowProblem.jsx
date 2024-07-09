@@ -21,7 +21,7 @@ const ShowProblem = () => {
     const { problemSlug } = useParams();
     const [problem, setProblem] = useState({});
     const [lang, setLang] = useState('c_cpp');
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState(`#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    return 0;\n}`);
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
 
@@ -35,6 +35,19 @@ const ShowProblem = () => {
 
     const handleLangSwitch = (event) => {
         setLang(event.target.value);
+        switch (event.target.value) {
+            case 'c_cpp':
+                setCode(`#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    return 0;\n}`);
+                break;
+            case 'python':
+                setCode(`# Python code\n\ndef main():\n    pass\n\nif __name__ == "__main__":\n    main()`);
+                break;
+            case 'java':
+                setCode(`// Java code\n\npublic class Main {\n    public static void main(String[] args) {\n    }\n}`);
+                break;
+            default:
+                setCode('');
+        }
     };
 
     useEffect(() => {
@@ -55,7 +68,6 @@ const ShowProblem = () => {
             }
         };
 
-       
         fetchProblem();
     }, [problemSlug, token]);
 
@@ -187,7 +199,7 @@ const ShowProblem = () => {
                         </FormControl>
                     </Box>
                 </Box>
-                <Editor lang={lang} setCode={setCode} />
+                <Editor lang={lang} setCode={setCode} defaultCode={code} /> {/* Pass defaultCode prop */}
                 <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
                     <Box>
                         <Paper>
