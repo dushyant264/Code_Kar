@@ -19,7 +19,6 @@ const ShowProblem = () => {
     const [loader, setLoader] = useState(false);
     const { token, isLoggedIn } = useContext(UserContext);
     const { problemSlug } = useParams();
-    const [problemDescriptionHTML, setProblemDescriptionHTML] = useState('');
     const [problem, setProblem] = useState({});
     const [lang, setLang] = useState('c_cpp');
     const [code, setCode] = useState('');
@@ -48,7 +47,6 @@ const ShowProblem = () => {
                 });
                 if (result.status === 200) {
                     setProblem(result.data);
-                    setProblemDescriptionHTML(result.data.description);
                 }
                 setLoader(false);
             } catch (error) {
