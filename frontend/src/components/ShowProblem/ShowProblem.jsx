@@ -105,7 +105,6 @@ const ShowProblem = () => {
 
     return (
         <Box>
-            <div dangerouslySetInnerHTML={{ __html: problemDescriptionHTML }} />
             <div className="outer-container" marginTop={100}>
                 <h1 className="problem-heading">{problem.title}</h1>
                 <div className="chip-container">

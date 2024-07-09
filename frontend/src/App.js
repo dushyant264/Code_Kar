@@ -11,6 +11,7 @@ import Login from './components/Login'
 import ProblemSet from './components/ProblemSet'
 import LeaderBoard from './components/LeaderBoard'
 import ShowProblem from './components/ShowProblem/ShowProblem'
+import AddProblem from './components/AddProblem'
 
 const UserContext= createContext()
 
@@ -63,6 +64,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/leader-board' element={<LeaderBoard/>}/>
         <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
+        <Route path='/admin/add-problem' element={<AddProblem/>}/>
       </Routes>
     </div>
    </UserContext.Provider>
