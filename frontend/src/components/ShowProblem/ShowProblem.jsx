@@ -149,6 +149,19 @@ const ShowProblem = () => {
                             )}
 
                         </div>
+                        <div className="constrain-container">
+                            <p className="constrain-p">Input pattern</p>
+                            
+                                <ul className='example-content'>
+                                   
+                                       <li > t \\number of test cases</li>
+                                        <li > n \\ dimensions of input data structure</li>
+                                        <li > a[i] \\ input data structure</li>
+                                        <li> \\ another relevant argument for the problem</li>
+                                   
+                                </ul>
+
+                        </div>
                     </div>
                 </div>
             </div>
