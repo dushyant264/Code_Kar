@@ -41,7 +41,7 @@ const ShowProblem = () => {
         const fetchProblem = async () => {
             try {
                 setLoader(true);
-                const PROBLEM_URL = `http://localhost:5000/api/problem/${problemSlug}`;
+                const PROBLEM_URL = `https://code-kar.onrender.com/api/problem/${problemSlug}`;
                 const result = await axios.get(PROBLEM_URL, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
@@ -64,7 +64,7 @@ const ShowProblem = () => {
             setLoader(true);
             let language = lang === 'c_cpp' ? 'cpp' : lang === 'python' ? 'py' : '';
 
-            const RUN_CODE_URL = 'http://localhost:5000/api/run';
+            const RUN_CODE_URL = 'https://code-kar.onrender.com/api/run';
             const result = await axios.post(
                 RUN_CODE_URL,
                 { lang: language, code, input },
