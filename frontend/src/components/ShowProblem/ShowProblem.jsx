@@ -17,6 +17,17 @@ import {
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+ const toastStyle = {
+    fontSize: '16px',
+    padding: '15px',
+    lineHeight: '1.5',
+    width: '400px',
+    wordBreak: 'break-word',
+    backgroundColor: '#333333', // Dark grey background
+    color: '#ffffff', // White text for contrast,
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+  };
+
 const ShowProblem = () => {
     const [loader, setLoader] = useState(false);
     const { token, isLoggedIn } = useContext(UserContext);
@@ -86,13 +97,13 @@ const ShowProblem = () => {
             );
             if (result.status === 200) {
                 setOutput(result.data);
-                toast.success('Code executed successfully')
+                toast.success('Code executed successfully',{style:toastStyle})
             }
             setLoader(false);
         } catch (error) {
             console.log(error.response?.data?.stderr);
             setLoader(false);
-            toast.error(error.response?.data?.stderr||'Error occured while running code')
+            toast.error(error.response?.data?.stderr||'Error occured while running code',{style:toastStyle})
         }
     };
 
@@ -109,19 +120,30 @@ const ShowProblem = () => {
             );
             if (result.status === 200) {
                 setOutput(result.data);
-                toast.success('Code submitted successfully')
+                toast.success('Code submitted successfully',{style:toastStyle})
             }
             setLoader(false);
         } catch (error) {
             console.log(error.response.data.stderr);
             setLoader(false);
-            toast.error(error.response.data.stderr||'Error occured while submitting code')
+            toast.error(error.response.data.stderr||'Error occured while submitting code',{style:toastStyle })
         }
     };
 
     return (
         <Box>
-            <ToastContainer  position='top-right' autoClose={5000}/>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                newestOnTop={false}
+            />
             <div className="outer-container" marginTop={100}>
                 <h1 className="problem-heading">{problem.title}</h1>
                 <div className="chip-container">
