@@ -31,7 +31,7 @@ const Login=()=>{
     const onSubmit=async(data)=>{
         try {
             setLoader(true)
-            const LOGIN_URL='http://localhost:5000/api/login'
+            const LOGIN_URL='https://code-kar.onrender.com/api/login'
             const result= await axios.post(LOGIN_URL,data)
             if(result.status===200){
                 let token=result.data

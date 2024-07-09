@@ -69,7 +69,7 @@ const AddProblem = () => {
 		event.preventDefault();
 		try {
 			setLoader(true);
-			const ADD_PROBLEM_URL = "http://localhost:5000/admin/problem";
+			const ADD_PROBLEM_URL = "https://code-kar.onrender.com/admin/problem";
 			const successMessage = await axios.post(ADD_PROBLEM_URL, data, { headers: { Authorization: `Bearer ${token}` } });
 			if (successMessage.data.message === "Problem added successfully") {
 				alert("Problem Added Successfully");

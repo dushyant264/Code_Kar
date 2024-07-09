@@ -55,7 +55,7 @@ const LeaderBoard=()=>{
             async()=>{
                 try {
                     setLoader(true)
-                    const RANKINGS_URL= 'http://localhost:5000/api/leaderboard'
+                    const RANKINGS_URL= 'https://code-kar.onrender.com/api/leaderboard'
                     const result= await axios.get(RANKINGS_URL,{ headers:{ Authorization: `Bearer ${token}`}})
                     if(result.status===200){
                         setRows(result.data)

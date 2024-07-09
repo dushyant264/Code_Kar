@@ -31,7 +31,7 @@ const  SignUp=()=>{
         try {
             setLoader(true)
             delete data['cpassword']
-            const SIGNUP_URL='http://localhost:5000/api/signup'
+            const SIGNUP_URL='https://code-kar.onrender.com/api/signup'
             const successMsg= await axios.post(SIGNUP_URL,data)
             if(successMsg.data==='success'){
                 navigate('/login')

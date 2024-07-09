@@ -85,7 +85,7 @@ const ShowProblem = () => {
             setLoader(true);
             let language = lang === 'c_cpp' ? 'cpp' : lang === 'python' ? 'py' : '';
 
-            const SUBMIT_CODE_URL = `http://localhost:5000/api/check/${problemSlug}`;
+            const SUBMIT_CODE_URL = `https://code-kar.onrender.com/api/check/${problemSlug}`;
             const result = await axios.post(
                 SUBMIT_CODE_URL,
                 { lang: language, code },
