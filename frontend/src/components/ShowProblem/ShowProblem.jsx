@@ -10,14 +10,19 @@ import {
     Button,
     FormControl,
     InputLabel,
-    NativeSelect,
+    MenuItem,
+    Select,
     Paper,
     TextField,
+    Typography,
+    Chip,
+    Grid,
+    Divider,
 } from '@mui/material';
-import {ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
- const toastStyle = {
+const toastStyle = {
     fontSize: '16px',
     padding: '15px',
     lineHeight: '1.5',
@@ -26,7 +31,7 @@ import 'react-toastify/dist/ReactToastify.css'
     backgroundColor: '#333333', // Dark grey background
     color: '#ffffff', // White text for contrast,
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-  };
+};
 
 const ShowProblem = () => {
     const [loader, setLoader] = useState(false);
@@ -131,7 +136,7 @@ const ShowProblem = () => {
     };
 
     return (
-        <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'row', height: '100vh', overflow: 'hidden' }}>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
@@ -144,134 +149,120 @@ const ShowProblem = () => {
                 theme="dark"
                 newestOnTop={false}
             />
-            <div className="outer-container" marginTop={100}>
-                <h1 className="problem-heading">{problem.title}</h1>
-                <div className="chip-container">
-                    <div className="chip-content">{problem.difficulty}</div>
-                </div>
-                <div className="problem-paragraph">
-                    <p>{problem.description}</p>
-                    <br />
+            <Box sx={{ width: '50%', overflowY: 'auto', p: 3 }}>
+                <Typography variant="h4" gutterBottom>{problem.title}</Typography>
+                <Chip label={problem.difficulty} color={
+                    problem.difficulty === 'Easy' ? 'success' :
+                    problem.difficulty === 'Medium' ? 'warning' : 'error'
+                } sx={{ mb: 2 }} />
+                <Typography variant="body1" paragraph>{problem.description}</Typography>
+                
+                <Divider sx={{ my: 2 }} />
 
-                    <p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-                    <br />
-
-                    <p>You can return the answer in any order.</p>
-
-                    <div>
-                        {problem.examples && problem.examples.length > 0 ? (
-                            problem.examples.map((example, index) => (
-                                <div key={index} className="example">
-                                    <p className="example-heading">Example {index + 1}:</p>
-                                    <div className="example-content">
-                                        <div>
-                                            <span className="example-heading">Input: </span>
-                                            <p className="example-p">{example.input}</p>
-                                        </div>
-                                        <div>
-                                            <span className="example-heading">Output: </span>
-                                            <p className="example-p">{example.output}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p>Loading examples...</p>
-                        )}
-
-                        <div className="constrain-container">
-                            <p className="constrain-p">Constraints:</p>
-                            {problem && problem.constraints && (
-                                <ul className='example-content'>
-                                    {problem.constraints.split('<br>').map((constraint, index) => (
-                                       <li key={index}>{constraint}</li>
-                                    ))}
-                                </ul>
-                            )}
-
-                        </div>
-                        <div className="constrain-container">
-                            <p className="constrain-p">Input pattern</p>
-                            
-                                <ul className='example-content'>
-                                   
-                                       <li > t \\number of test cases</li>
-                                        <li > n \\ dimensions of input data structure</li>
-                                        <li > a[i] \\ input data structure</li>
-                                        <li> \\ another relevant argument for the problem</li>
-                                   
-                                </ul>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Box sx={{ width: '50%', position: 'fixed', right: '0', top: '100px' }}>
-                <Box>
-                    <Box sx={{ minWidth: 50 }}>
-                        <FormControl fullWidth>
-                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                                Lang
-                            </InputLabel>
-                            <NativeSelect
-                                defaultValue="c_cpp"
-                                inputProps={{
-                                    name: 'lang',
-                                    id: 'uncontrolled-native',
-                                }}
-                                onChange={handleLangSwitch}
-                            >
-                                <option value="c_cpp">C++</option>
-                                <option value="java">Java</option>
-                                <option value="python">Python</option>
-                            </NativeSelect>
-                        </FormControl>
-                    </Box>
-                </Box>
-                <Editor lang={lang} setCode={setCode} defaultCode={code} /> {/* Pass defaultCode prop */}
-                <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
-                    <Box>
-                        <Paper>
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Input"
-                                multiline
-                                fullWidth
-                                rows={5}
-                                value={input}
-                                onChange={(e) => {
-                                    setInput(e.target.value);
-                                }}
-                            />
+                <Typography variant="h6" gutterBottom>Examples:</Typography>
+                {problem.examples && problem.examples.length > 0 ? (
+                    problem.examples.map((example, index) => (
+                        <Paper key={index} elevation={3} sx={{ p: 2, mb: 2 }}>
+                            <Typography variant="subtitle1">Example {index + 1}:</Typography>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <Typography variant="body2"><strong>Input:</strong> {example.input}</Typography>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Typography variant="body2"><strong>Output:</strong> {example.output}</Typography>
+                                </Grid>
+                            </Grid>
                         </Paper>
+                    ))
+                ) : (
+                    <Typography>Loading examples...</Typography>
+                )}
+
+                <Divider sx={{ my: 2 }} />
+
+                <Typography variant="h6" gutterBottom>Constraints:</Typography>
+                {problem && problem.constraints && (
+                    <ul>
+                        {problem.constraints.split('<br>').map((constraint, index) => (
+                            <li key={index}><Typography variant="body2">{constraint}</Typography></li>
+                        ))}
+                    </ul>
+                )}
+
+                <Divider sx={{ my: 2 }} />
+
+                <Typography variant="h6" gutterBottom>Input Pattern:</Typography>
+                <ul>
+                    <li><Typography variant="body2">t - number of test cases</Typography></li>
+                    <li><Typography variant="body2">n - dimensions of input data structure</Typography></li>
+                    <li><Typography variant="body2">a[i] - input data structure</Typography></li>
+                    <li><Typography variant="body2">Another relevant argument for the problem</Typography></li>
+                </ul>
+            </Box>
+
+            <Box sx={{ width: '50%', p: 3, backgroundColor: '#f5f5f5' }}>
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                    <InputLabel id="lang-select-label">Language</InputLabel>
+                    <Select
+                        labelId="lang-select-label"
+                        value={lang}
+                        label="Language"
+                        onChange={handleLangSwitch}
+                    >
+                        <MenuItem value="c_cpp">C++</MenuItem>
+                        <MenuItem value="java">Java</MenuItem>
+                        <MenuItem value="python">Python</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <Editor lang={lang} setCode={setCode} defaultCode={code} />
+
+                <Grid container spacing={2} sx={{ mt: 2 }}>
+                    <Grid item xs={6}>
+                        <TextField
+                            label="Input"
+                            multiline
+                            fullWidth
+                            rows={5}
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            variant="outlined"
+                        />
                         <Button
                             variant="contained"
-                            color="error"
-                            sx={{ display: 'block', mt: 1 }}
+                            color="primary"
+                            fullWidth
+                            sx={{ mt: 1 }}
                             onClick={handleRun}
                         >
                             Run Code
                         </Button>
-                    </Box>
-                    <Box>
-                        <Paper>
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Output"
-                                multiline
-                                fullWidth
-                                rows={5}
-                                value={output}
-                            />
-                        </Paper>
-                    </Box>
-                    <Box sx={{ ml: 'auto', mr: 3 }}>
-                        <Button variant="contained" color="success" onClick={handleSubmit}>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            label="Output"
+                            multiline
+                            fullWidth
+                            rows={5}
+                            value={output}
+                            variant="outlined"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                        <Button
+                            variant="contained"
+                            color="success"
+                            fullWidth
+                            sx={{ mt: 1 }}
+                            onClick={handleSubmit}
+                        >
                             Submit
                         </Button>
-                    </Box>
-                </Box>
+                    </Grid>
+                </Grid>
             </Box>
+
             {loader && (
                 <Box sx={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                     <ColorRing
