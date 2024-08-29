@@ -136,7 +136,7 @@ const ShowProblem = () => {
     };
 
     const getDifficultyColor = (difficulty) => {
-        switch(difficulty.toLowerCase()) {
+        switch(difficulty?.toLowerCase()) {
             case 'easy':
                 return 'success';
             case 'medium':
@@ -164,7 +164,13 @@ const ShowProblem = () => {
             />
             <Box sx={{ width: '50%', overflowY: 'auto', p: 3 }}>
                 <Typography variant="h4" gutterBottom>{problem.title}</Typography>
-                <Chip label={problem.difficulty} color={getDifficultyColor(problem.difficulty)} sx={{ mb: 2 }} />
+                {problem.difficulty && (
+                    <Chip 
+                        label={problem.difficulty} 
+                        color={getDifficultyColor(problem.difficulty)}
+                        sx={{ mb: 2 }} 
+                    />
+                )}
                 <Typography variant="body1" paragraph>{problem.description}</Typography>
                 
                 <Divider sx={{ my: 2 }} />
