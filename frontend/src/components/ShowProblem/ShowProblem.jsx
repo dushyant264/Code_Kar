@@ -135,6 +135,19 @@ const ShowProblem = () => {
         }
     };
 
+    const getDifficultyColor = (difficulty) => {
+        switch(difficulty.toLowerCase()) {
+            case 'easy':
+                return 'success';
+            case 'medium':
+                return 'warning';
+            case 'hard':
+                return 'error';
+            default:
+                return 'default';
+        }
+    };
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'row', height: '100vh', overflow: 'hidden' }}>
             <ToastContainer
@@ -151,10 +164,7 @@ const ShowProblem = () => {
             />
             <Box sx={{ width: '50%', overflowY: 'auto', p: 3 }}>
                 <Typography variant="h4" gutterBottom>{problem.title}</Typography>
-                <Chip label={problem.difficulty} color={
-                    problem.difficulty === 'Easy' ? 'success' :
-                    problem.difficulty === 'Medium' ? 'warning' : 'error'
-                } sx={{ mb: 2 }} />
+                <Chip label={problem.difficulty} color={getDifficultyColor(problem.difficulty)} sx={{ mb: 2 }} />
                 <Typography variant="body1" paragraph>{problem.description}</Typography>
                 
                 <Divider sx={{ my: 2 }} />
