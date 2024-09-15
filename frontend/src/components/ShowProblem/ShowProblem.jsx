@@ -218,9 +218,9 @@ const ShowProblem = () => {
                 </ul>
             </Box>
 
-            <Box sx={{ width: '50%', p: 3, backgroundColor: '#f5f5f5' }}>
+            <Box sx={{ width: '50%', p: 3, backgroundColor: theme.palette.background.paper }}>
                 <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel id="lang-select-label">Language</InputLabel>
+                    <InputLabel id="lang-select-label" sx={{ color: theme.palette.text.primary }}>Language</InputLabel>
                     <Select
                         labelId="lang-select-label"
                         value={lang}
@@ -230,6 +230,12 @@ const ShowProblem = () => {
                             color: theme.palette.text.primary,
                             '& .MuiOutlinedInput-notchedOutline': {
                                 borderColor: theme.palette.text.primary,
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: theme.palette.text.primary,
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: theme.palette.primary.main,
                             },
                         }}
                     >
@@ -255,6 +261,12 @@ const ShowProblem = () => {
                                 '& .MuiOutlinedInput-root': {
                                     '& fieldset': {
                                         borderColor: theme.palette.text.primary,
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: theme.palette.text.primary,
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: theme.palette.primary.main,
                                     },
                                 },
                                 '& .MuiInputLabel-root': {
@@ -290,6 +302,12 @@ const ShowProblem = () => {
                                 '& .MuiOutlinedInput-root': {
                                     '& fieldset': {
                                         borderColor: theme.palette.text.primary,
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: theme.palette.text.primary,
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: theme.palette.primary.main,
                                     },
                                 },
                                 '& .MuiInputLabel-root': {
