@@ -96,7 +96,15 @@ useEffect(() => {
                            sx={{'&:last-child td, &:last-child th':{border:0}}}
                         >
                             <StyledTableCell>
-                                <Link to={isLoggedIn?`/problem/${row.slug}`:`/login`} style={{textDecoration:'none', color:'#000'}}>{row.title}</Link>
+                                <Link 
+                                    to={isLoggedIn?`/problem/${row.slug}`:`/login`} 
+                                    style={{
+                                        textDecoration:'none', 
+                                        color: 'inherit'  // This will make the link color adapt to the theme
+                                    }}
+                                >
+                                    {row.title}
+                                </Link>
                             </StyledTableCell>
                             <StyledTableCell>{row.difficulty}</StyledTableCell>
                             <StyledTableCell>{row.action}</StyledTableCell>

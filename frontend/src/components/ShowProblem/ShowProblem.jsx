@@ -18,6 +18,7 @@ import {
     Chip,
     Grid,
     Divider,
+    useTheme,
 } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -42,6 +43,7 @@ const ShowProblem = () => {
     const [code, setCode] = useState(`#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    return 0;\n}`);
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
+    const theme = useTheme();
 
     const navigate = useNavigate();
 
@@ -224,6 +226,12 @@ const ShowProblem = () => {
                         value={lang}
                         label="Language"
                         onChange={handleLangSwitch}
+                        sx={{
+                            color: theme.palette.text.primary,
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                borderColor: theme.palette.text.primary,
+                            },
+                        }}
                     >
                         <MenuItem value="c_cpp">C++</MenuItem>
                         <MenuItem value="java">Java</MenuItem>
@@ -243,6 +251,19 @@ const ShowProblem = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             variant="outlined"
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: theme.palette.text.primary,
+                                    },
+                                },
+                                '& .MuiInputLabel-root': {
+                                    color: theme.palette.text.primary,
+                                },
+                                '& .MuiInputBase-input': {
+                                    color: theme.palette.text.primary,
+                                },
+                            }}
                         />
                         <Button
                             variant="contained"
@@ -264,6 +285,19 @@ const ShowProblem = () => {
                             variant="outlined"
                             InputProps={{
                                 readOnly: true,
+                            }}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: theme.palette.text.primary,
+                                    },
+                                },
+                                '& .MuiInputLabel-root': {
+                                    color: theme.palette.text.primary,
+                                },
+                                '& .MuiInputBase-input': {
+                                    color: theme.palette.text.primary,
+                                },
                             }}
                         />
                         <Button

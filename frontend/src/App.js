@@ -24,6 +24,10 @@ function App() {
 
   const theme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   // setting states
   const [token, setToken]= useState(Cookies.get('token'))
   const [user, setUser]= useState({})
@@ -66,7 +70,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className='App'>
-        <Navbar/>
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
         <Routes>
           <Route path='/' element={<ProblemSet/>}/>
           <Route path='/login' element={<Login/>}/>

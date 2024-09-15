@@ -14,8 +14,10 @@ import {
     ListItemButton,
     styled
 } from '@mui/material'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
 
-const Navbar=()=>{
+const Navbar=({ darkMode, toggleDarkMode })=> {
     const {user, isLoggedIn, setToken}= useContext(UserContext); // get user data
 
     const [mobileMenu, setMobileMenu]= useState({ left:false});
@@ -82,7 +84,6 @@ const Navbar=()=>{
 			display: "block",
 		},
 	}));
-
 
     const NavbarContainer=styled(Box)(({theme})=>({
         display:'flex',
@@ -151,6 +152,9 @@ const Navbar=()=>{
                             buttonText='Logout'
                         />
                     </Box>
+                    <IconButton color="inherit" onClick={toggleDarkMode} sx={{ ml: 1 }}>
+                        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </IconButton>
                 </Box>
                 :
                 <Box
