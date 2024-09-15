@@ -1,9 +1,13 @@
-
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect, useState, createContext } from 'react'
 import Cookies from 'js-cookie'
+import React, { useState, useMemo } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { lightTheme, darkTheme } from './theme';
+
 // import components
 import Navbar from './components/NavBar'
 import SignUp from './components/SignUp'
@@ -17,6 +21,10 @@ const UserContext= createContext()
 
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const theme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
+
   // setting states
   const [token, setToken]= useState(Cookies.get('token'))
   const [user, setUser]= useState({})
@@ -56,17 +64,23 @@ function App() {
 
   return (
    <UserContext.Provider value={{ user, token, setToken, isLoggedIn, setIsLoggedIn}}>
-    <div className='App'>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<ProblemSet/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path='/leader-board' element={<LeaderBoard/>}/>
-        <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
-        <Route path='/admin/add-problem' element={<AddProblem/>}/>
-      </Routes>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className='App'>
+        <Navbar/>
+        <Routes>
+          <Route path='/' element={<ProblemSet/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/leader-board' element={<LeaderBoard/>}/>
+          <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
+          <Route path='/admin/add-problem' element={<AddProblem/>}/>
+        </Routes>
+        <button onClick={() => setDarkMode(!darkMode)}>
+          Toggle Dark Mode
+        </button>
+      </div>
+    </ThemeProvider>
    </UserContext.Provider>
   );
 }
