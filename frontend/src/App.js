@@ -79,9 +79,6 @@ function App() {
           <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
           <Route path='/admin/add-problem' element={<AddProblem/>}/>
         </Routes>
-        <button onClick={() => setDarkMode(!darkMode)}>
-          Toggle Dark Mode
-        </button>
       </div>
     </ThemeProvider>
    </UserContext.Provider>
