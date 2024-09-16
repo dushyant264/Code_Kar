@@ -131,9 +131,9 @@ const ShowProblem = () => {
             }
             setLoader(false);
         } catch (error) {
-            console.log(error.response.data.stderr);
+            console.log(error.response?.data?.stderr);
             setLoader(false);
-            toast.error(error.response.data.stderr||'Error occured while submitting code',{style:toastStyle })
+            toast.error(error.response?.data?.stderr||error.response?.data?.message||'Error occured while submitting code',{style:toastStyle })
         }
     };
 
