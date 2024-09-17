@@ -1,8 +1,7 @@
 const User = require('../../models/UserModel')
 const Problem = require('../../models/ProblemModel')
 
-const ProfileController = {
-  getProfileData: async (req, res) => {
+const ProfileController = async (req, res) => {
     try {
       const userId = req.userId;
       const user = await User.findById(userId);
@@ -36,7 +35,6 @@ const ProfileController = {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
-  }
-};
+  };
 
 module.exports = ProfileController;
