@@ -14,7 +14,7 @@ const GetProblemController = require('../Controllers/UserController/GetProblemCo
 const getAllProbController = require('../Controllers/UserController/getAllProbController');
 const checkProblemController = require('../Controllers/UserController/checkProblem');
 const RunCodeController = require('../Controllers/UserController/runCode');
-
+const ProfileController = require('../Controllers/UserController/profileController');
 // SignUp
 
 router.route('/signup').post(SignUpController);
@@ -46,5 +46,9 @@ router.route('/run').post(auth,RunCodeController)
 // check problem
 
 router.route('/check/:slug').post(auth,checkProblemController)
+
+// get profile
+
+router.route('/profile').get(auth,ProfileController)
 
 module.exports = router;

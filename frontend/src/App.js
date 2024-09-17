@@ -15,6 +15,7 @@ import ProblemSet from './components/ProblemSet'
 import LeaderBoard from './components/LeaderBoard'
 import ShowProblem from './components/ShowProblem/ShowProblem'
 import AddProblem from './components/AddProblem'
+import Profile from './components/Profile'
 
 const UserContext= createContext()
 
@@ -78,6 +79,7 @@ function App() {
           <Route path='/leader-board' element={<LeaderBoard/>}/>
           <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
           <Route path='/admin/add-problem' element={<AddProblem/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </div>
     </ThemeProvider>

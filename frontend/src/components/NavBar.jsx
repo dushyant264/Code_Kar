@@ -17,6 +17,7 @@ import {
 } from '@mui/material'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+import { Avatar } from '@mui/material'
 
 const Navbar=({ darkMode, toggleDarkMode })=> {
     const {user, isLoggedIn, setToken}= useContext(UserContext); // get user data
@@ -140,7 +141,13 @@ const Navbar=({ darkMode, toggleDarkMode })=> {
                         gap:'1rem'
                     }}
                 >
+                    <Link to="/profile" style={{ textDecoration: 'none' }}>
+                        <Avatar sx={{ width: 40, height: 40 }}>{user.name[0]}</Avatar>
+                    </Link>
                     <NavLink variant='body2'>{user.name}</NavLink>
+                    <IconButton color="inherit" onClick={toggleDarkMode} sx={{ ml: 1 }}>
+                        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </IconButton>
                     <Box onClick={()=>{
                         Cookies.remove('token');
                         setToken('');
@@ -153,9 +160,6 @@ const Navbar=({ darkMode, toggleDarkMode })=> {
                             buttonText='Logout'
                         />
                     </Box>
-                    <IconButton color="inherit" onClick={toggleDarkMode} sx={{ ml: 1 }}>
-                        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-                    </IconButton>
                 </Box>
                 :
                 <Box
