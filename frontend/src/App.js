@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { lightTheme, darkTheme } from './theme';
+import { Box } from '@mui/material';
 
 // import components
 import Navbar from './components/NavBar'
@@ -16,6 +17,7 @@ import LeaderBoard from './components/LeaderBoard'
 import ShowProblem from './components/ShowProblem/ShowProblem'
 import AddProblem from './components/AddProblem'
 import Profile from './components/Profile'
+import Footer from './components/footer'
 
 const UserContext= createContext()
 
@@ -70,18 +72,21 @@ function App() {
    <UserContext.Provider value={{ user, token, setToken, isLoggedIn, setIsLoggedIn}}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className='App'>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-        <Routes>
-          <Route path='/' element={<ProblemSet/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/leader-board' element={<LeaderBoard/>}/>
-          <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
-          <Route path='/admin/add-problem' element={<AddProblem/>}/>
-          <Route path='/profile' element={<Profile/>}/>
-        </Routes>
-      </div>
+        <Box component="main" sx={{ flexGrow: 1 }}>
+          <Routes>
+            <Route path='/' element={<ProblemSet/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/signup' element={<SignUp/>}/>
+            <Route path='/leader-board' element={<LeaderBoard/>}/>
+            <Route path='/problem/:problemSlug' element={<ShowProblem/>}/>
+            <Route path='/admin/add-problem' element={<AddProblem/>}/>
+            <Route path='/profile' element={<Profile/>}/>
+          </Routes>
+        </Box>
+        <Footer />
+      </Box>
     </ThemeProvider>
    </UserContext.Provider>
   );
