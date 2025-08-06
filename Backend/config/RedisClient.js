@@ -2,10 +2,10 @@ const { createClient } =require('redis');
 
 // Create a Redis client
 const redisClient = createClient({
-  password: process.env.REDIS_PASSWORD || 'fMkVPHt6RJ37C2HjNgnUgB3GiOrSUhw7',
+  password: process.env.REDIS_PASSWORD,
   socket: {
-    host: process.env.REDIS_HOST || 'redis-16925.c264.ap-south-1-1.ec2.redns.redis-cloud.com',
-    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 16925,
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) ,
     keepAlive: true,
     reconnectStrategy: retries => {
       console.warn(`Redis reconnect attempt #${retries}`);
