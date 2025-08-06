@@ -2,10 +2,10 @@ const { createClient } =require('redis');
 
 // Create a Redis client
 const redisClient = createClient({
-    password: process.env.PASS || '8nnhsavjdWyv3OmThnrwaDoOEmdsYogv',
+    password: process.env.PASS || 'fMkVPHt6RJ37C2HjNgnUgB3GiOrSUhw7',
     socket: {
-        host: process.env.HO || 'redis-12093.c285.us-west-2-2.ec2.redns.redis-cloud.com',
-        port: process.env.PO || 12093
+        host: process.env.HO || 'redis-16925.c264.ap-south-1-1.ec2.redns.redis-cloud.com',
+        port: process.env.PO || 16925
     }
 });
 
