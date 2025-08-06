@@ -100,7 +100,8 @@ useEffect(() => {
                                     to={isLoggedIn?`/problem/${row.slug}`:`/login`} 
                                     style={{
                                         textDecoration:'none', 
-                                        color: 'inherit'  // This will make the link color adapt to the theme
+                                        color: 'inherit',  // This will make the link color adapt to the theme
+                                        fontWeight: 'bold'
                                     }}
                                 >
                                     {row.title}
